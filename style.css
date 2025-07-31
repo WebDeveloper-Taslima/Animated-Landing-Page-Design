@@ -1,0 +1,276 @@
+/* Basic Resets and Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    background-color: #000; /* Ensure black background if image doesn't cover fully */
+    color: #fff;
+    line-height: 1.6;
+}
+
+.landing-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: url('background-storm.webp') no-repeat center center / cover; /* Stormy background image */
+    background-attachment: fixed; /* Optional: for parallax-like effect */
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.nav-brand {
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #fff;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 0.95em;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #b8ff00; /* Highlight color for hover */
+}
+
+.hamburger-menu {
+    display: none; /* Hidden on desktop */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 40px 50px; /* Adjust padding to accommodate navbar */
+    position: relative;
+    z-index: 1;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px; /* Max width for content */
+    margin-bottom: 50px;
+}
+
+.verbiage-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align text right for left column */
+    padding: 0 40px; /* Spacing from center */
+    flex: 1;
+    text-align: right;
+}
+
+.verbiage-column.right-column {
+    align-items: flex-start; /* Align text left for right column */
+    text-align: left;
+}
+
+.verbiage-line {
+    font-size: 2.2em;
+    font-weight: 700;
+    opacity: 0; /* Hidden by default */
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    margin-bottom: 25px; /* Spacing between lines */
+    white-space: nowrap; /* Keep phrases on one line */
+}
+
+.center-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px; 
+}
+
+.lightning-bolt-main-container {
+    position: absolute;
+    width: 100%; /* Relative to center-content */
+    height: 300px; /* Height of the bolt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hidden by default */
+    transform: scale(0.5); /* Start smaller for flash effect */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.lightning-bolt-main {
+    width: 80px; /* Adjust size of the SVG bolt */
+    height: 100%;
+    fill: #fff; /* White color for the bolt */
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.9)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.6)); /* Strong glow */
+}
+
+/* Specific animation for the main bolt */
+.lightning-bolt-main-container.flash {
+    animation: mainBoltFlash 0.5s ease-out forwards;
+}
+
+@keyframes mainBoltFlash {
+    0% { opacity: 0; transform: scale(0.5) translateY(-50px); }
+    50% { opacity: 1; transform: scale(1.1) translateY(0); }
+    100% { opacity: 0.8; transform: scale(1) translateY(0); } /* Stays visible but less intense */
+}
+
+/* Animations for Verbiage */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(10px); }
+    20% { opacity: 1; transform: translateY(0); }
+    80% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.verbiage-line.active {
+    animation: fadeInOut 1.5s ease-in-out forwards;
+}
+
+/* Join the Waiting List Button */
+.join-waiting-list-btn {
+    background: linear-gradient(to right, #cfff04, #b8ff00); /* Yellow-green gradient */
+    color: #000;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 50px; /* Pill shape */
+    font-size: 1.3em;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 5px 15px rgba(184, 255, 0, 0.4);
+    margin-top: 50px;
+}
+
+.join-waiting-list-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(184, 255, 0, 0.6);
+}
+
+/* Main Product Name at the bottom */
+.main-product-name {
+    font-size: 5em;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.4); /* Glowing effect */
+    letter-spacing: 5px;
+    margin-top: 50px;
+    opacity: 0; /* Hidden initially */
+    transition: opacity 1s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        display: none; /* Hide nav links on smaller screens */
+    }
+
+    .hamburger-menu {
+        display: flex; /* Show hamburger */
+    }
+
+    .verbiage-column {
+        padding: 0 15px;
+    }
+
+    .verbiage-line {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .main-product-name {
+        font-size: 3.5em;
+        letter-spacing: 3px;
+    }
+
+    .join-waiting-list-btn {
+        padding: 15px 30px;
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 600px) {
+    .content-wrapper {
+        flex-direction: column; /* Stack columns vertically */
+    }
+
+    .verbiage-column {
+        width: 100%;
+        text-align: center; /* Center text when stacked */
+        align-items: center;
+        padding: 0;
+    }
+
+    .verbiage-line {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .center-content {
+        margin: 30px 0; /* Space between stacked columns */
+        width: 80px;
+        height: 200px;
+    }
+
+    .lightning-bolt-main-container {
+        height: 200px;
+        width: 80px;
+    }
+
+    .lightning-bolt-main {
+        width: 60px;
+    }
+
+    .main-product-name {
+        font-size: 2.5em;
+        letter-spacing: 2px;
+    }
+
+    .join-waiting-list-btn {
+        width: 90%;
+        max-width: 300px;
+    }
+}
